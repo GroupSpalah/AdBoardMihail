@@ -21,14 +21,4 @@ public class Category {
     int id;
 
     String name;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-            mappedBy = "ads")
-    List<Ads> ads;
-
-    @ManyToOne
-    @JoinColumn(name = "FK_Category_Author")
-    Author author;
-
-
 }

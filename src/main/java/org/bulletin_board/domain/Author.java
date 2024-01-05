@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,7 +28,7 @@ public class Author {
             mappedBy = "author")
     Address address;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-            mappedBy = "category")
-    List<Category> categories;
+    @ManyToOne
+    @JoinColumn
+    Ad ad;
 }

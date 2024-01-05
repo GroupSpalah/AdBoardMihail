@@ -14,10 +14,10 @@ import java.time.LocalDate;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
-public class Ads {
+public class Ad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ads_id")
+    @Column(name = "ad_id")
     int id;
 
     String name;
