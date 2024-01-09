@@ -4,14 +4,13 @@
 -- board.address definition
 
 CREATE TABLE `address` (
-  `FK_Address_Author` int DEFAULT NULL,
-  `address_id` int NOT NULL AUTO_INCREMENT,
+  `FK_Address_Author` int DEFAULT NULL ,
+  `address_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `city` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`address_id`),
-  UNIQUE KEY `UK_2wlfjc5j19o2t0rj4kgtwoadq` (`FK_Address_Author`),
-  CONSTRAINT `FK6o3psxc02blsvg7j5vr5mh672` FOREIGN KEY (`FK_Address_Author`) REFERENCES `author` (`author_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY (`FK_Address_Author`),
+  FOREIGN KEY (`FK_Address_Author`) REFERENCES `author` (`author_id`)
+);
 
 CREATE TABLE `email` (
   `email_id` int NOT NULL AUTO_INCREMENT,
