@@ -29,7 +29,7 @@ public class Ad {
     int costService;
 
     @ManyToOne
-    @JoinColumn(name = "FK_Ads_Category")
+    @JoinColumn(name = "FK_Ad_Category")
     Category category;
 
 }

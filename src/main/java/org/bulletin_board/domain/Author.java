@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ToString
+@ToString(exclude = "address")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,11 @@ public class Author {
             mappedBy = "author")
     Address address;
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "FK_Author_Email")
+    Email email;
+
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "FK_Author_Ad")
     Ad ad;
 }

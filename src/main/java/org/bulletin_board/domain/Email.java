@@ -20,8 +20,4 @@ public class Email {
 
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_Email_Author")
-    Author author;
-
 }

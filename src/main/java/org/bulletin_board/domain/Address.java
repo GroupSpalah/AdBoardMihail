@@ -26,4 +26,9 @@ public class Address {
     @JoinColumn(name = "FK_Address_Author")
     Author author;
 
+    public Address(int id, String city, String country) {
+        this.id = id;
+        this.city = city;
+        this.country = country;
+    }
 }
