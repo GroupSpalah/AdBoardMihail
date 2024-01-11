@@ -20,7 +20,11 @@ public class Test {
 
         Ad ad = new Ad(0,"BMW", LocalDate.now(), "buy a car", 150, auto);
 
-        Address address = new Address(0, "Kyiv", "Ukraine");
+        Address address = Address
+                .builder()
+                .city("Kiev")
+                .country("Ukraine")
+                .build();
 
         Phone phone = new Phone(0, "088-88-22-45");
 

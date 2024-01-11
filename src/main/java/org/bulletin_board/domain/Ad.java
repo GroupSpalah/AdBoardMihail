@@ -26,6 +26,7 @@ public class Ad {
 
     String text;
 
+    @Column(name = "cost_service")
     int costService;
 
     @ManyToOne
