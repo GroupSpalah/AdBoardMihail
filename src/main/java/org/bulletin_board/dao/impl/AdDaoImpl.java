@@ -3,15 +3,16 @@ package org.bulletin_board.dao.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.Cleanup;
-import org.bulletin_board.dao.CrudDAO;
+import org.bulletin_board.dao.AdDAO;
 import org.bulletin_board.domain.Ad;
 
 import java.sql.SQLException;
 
 import static org.bulletin_board.util.Constans.FACTORY;
 
-public class AdDaoImpl implements CrudDAO<Ad> {
+public class AdDaoImpl implements AdDAO {
 
     @Override
     public void add(Ad ad) throws SQLException {
@@ -22,7 +23,9 @@ public class AdDaoImpl implements CrudDAO<Ad> {
         em.persist(ad);
 
         transaction.commit();
+
     }
+
     @Override
     public Ad findById(int id) throws SQLException {
         @Cleanup
@@ -37,17 +40,36 @@ public class AdDaoImpl implements CrudDAO<Ad> {
     }
 
     @Override
-    public void update(Ad ad) throws SQLException {
+    public void update(int id) throws SQLException {
+        @Cleanup
+        EntityManager em = FACTORY.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
 
+        Ad ad = em.find(Ad.class, id);
+        ad.setName("BMW");
+        ad.setCostService(350);
+
+        transaction.commit();
     }
 
     @Override
-    public void delete(Ad ad) throws SQLException {
+    public void delete(int id) throws SQLException {
+        @Cleanup
+        EntityManager em = FACTORY.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
 
-    }
+        Query updateQuery = em.createQuery("UPDATE Author a SET a.ad = NULL WHERE a.ad.id = :ad_id");
+        updateQuery.setParameter("ad_id", id);
 
-    @Override
-    public void deleteAll(Ad ad) throws SQLException {
+        Query query = em.createQuery("DELETE FROM Ad c WHERE c.id =: c_id");
+        query.setParameter("c_id", id);
+
+        updateQuery.executeUpdate();
+        query.executeUpdate();
+
+        transaction.commit();
 
     }
 
@@ -60,6 +82,5 @@ public class AdDaoImpl implements CrudDAO<Ad> {
     public void filtration(Ad ad) throws SQLException {
 
     }
-
- }
+}
 

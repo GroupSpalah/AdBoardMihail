@@ -1,18 +1,15 @@
 
 package org.bulletin_board.service.imp;
-
-import org.bulletin_board.dao.CrudDAO;
+import org.bulletin_board.dao.AdDAO;
 import org.bulletin_board.dao.impl.AdDaoImpl;
-import org.bulletin_board.dao.impl.AuthorDaoImpl;
 import org.bulletin_board.domain.Ad;
-import org.bulletin_board.domain.Author;
-import org.bulletin_board.service.CrudService;
+import org.bulletin_board.service.AdService;
 
 import java.sql.SQLException;
 
-public class AdServiceImpl implements CrudService<Ad> {
+public class AdServiceImpl implements AdService {
 
-    private CrudDAO<Ad> dao;
+    private AdDAO dao;
 
     public AdServiceImpl() {
         dao = new AdDaoImpl();
@@ -24,29 +21,27 @@ public class AdServiceImpl implements CrudService<Ad> {
     }
 
     @Override
-    public void update(Ad ad) throws SQLException {
-        dao.update(ad);
+    public void update(int id) throws SQLException {
+        dao.update(id);
 
     }
 
-    @Override
-    public void delete(Ad ad) throws SQLException {
-
-    }
-
-    @Override
-    public void deleteAll(Ad ad) throws SQLException {
-
-    }
 
     @Override
     public void show(Ad ad) throws SQLException {
+        dao.show(ad);
 
     }
 
     @Override
     public void filtration(Ad ad) throws SQLException {
+        dao.filtration(ad);
 
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        dao.delete(id);
     }
 
     @Override

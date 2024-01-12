@@ -24,28 +24,8 @@ public class AuthorServiceImpl implements CrudService<Author> {
     }
 
     @Override
-    public void update(Author author) throws SQLException {
-        dao.update(author);
-
-    }
-
-    @Override
-    public void delete(Author author) throws SQLException {
-
-    }
-
-    @Override
-    public void deleteAll(Author author) throws SQLException {
-
-    }
-
-    @Override
-    public void show(Author author) throws SQLException {
-
-    }
-
-    @Override
-    public void filtration(Author author) throws SQLException {
+    public void update(int id) throws SQLException {
+        dao.update(id);
 
     }
 

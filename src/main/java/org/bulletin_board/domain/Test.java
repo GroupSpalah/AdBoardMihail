@@ -1,10 +1,11 @@
 package org.bulletin_board.domain;
 
+import org.bulletin_board.service.AdService;
+import org.bulletin_board.service.CategoryService;
 import org.bulletin_board.service.CrudService;
 import org.bulletin_board.service.imp.AdServiceImpl;
 import org.bulletin_board.service.imp.AuthorServiceImpl;
 import org.bulletin_board.service.imp.CategoryServiceImpl;
-import org.bulletin_board.service.imp.AddressServiceImpl;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -12,30 +13,52 @@ import java.time.LocalDate;
 public class Test {
     public static void main(String[] args) throws SQLException {
         CrudService<Author> authorService = new AuthorServiceImpl();
-        CrudService<Ad> adService = new AdServiceImpl();
-        CrudService<Category> categoryService = new CategoryServiceImpl();
-        CrudService<Address> addressService = new AddressServiceImpl();
+        AdService adService = new AdServiceImpl();
+        CategoryService categoryService = new CategoryServiceImpl();
 
-        Category auto = new Category(0, "Auto");
+        Category auto = Category.builder()
+                .name("Auto")
+                .build();
 
-        Ad ad = new Ad(0,"BMW", LocalDate.now(), "buy a car", 150, auto);
+        Category car = Category.builder()
+                .name("Car")
+                .build();
+
+        Ad ad = Ad.builder()
+                .name("Volvo")
+                .date(LocalDate.now())
+                .text("change a car")
+                .costService(150)
+                .category(auto)
+                .build();
 
         Address address = Address
                 .builder()
-                .city("Kiev")
+                .city("Dnipro")
                 .country("Ukraine")
                 .build();
 
-        Phone phone = new Phone(0, "088-88-22-45");
+        Phone phone = Phone.builder()
+                .number("089-234-12-56")
+                .build();
 
-        Email email = new Email(0, "jack@gmail.com");
+        Email email = Email.builder()
+                .name("Jack@gmail.com")
+                .build();
 
-        Author author = new Author(0, "Jack", phone, address, email, ad);
-        Author author1 = new Author(0, "John", phone, address, email, ad);
+        Author author = Author.builder()
+                .name("Jack")
+                .phone(phone)
+                .address(address)
+                .email(email)
+                .ad(ad)
+                .build();
 
         address.setAuthor(author);
 
+        categoryService.add(car);
         categoryService.add(auto);
+        ad.setCategory(car);
         Category category = categoryService.findById(1);
         ad.setCategory(category);
 
@@ -44,6 +67,13 @@ public class Test {
         author.setAd(adServiceById);
 
         authorService.add(author);
+
+        adService.update(1);
+        authorService.update(1);
+        categoryService.update(1);
+
+        adService.delete(1);
+        categoryService.delete(1);
 
     }
 }

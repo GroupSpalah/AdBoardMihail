@@ -1,15 +1,18 @@
 
 package org.bulletin_board.service.imp;
+import org.bulletin_board.dao.CategoryDAO;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.CategoryDaoImpl;
+import org.bulletin_board.domain.Ad;
 import org.bulletin_board.domain.Category;
+import org.bulletin_board.service.CategoryService;
 import org.bulletin_board.service.CrudService;
 
 import java.sql.SQLException;
 
-public class CategoryServiceImpl implements CrudService<Category> {
+public class CategoryServiceImpl implements CategoryService {
 
-    private CrudDAO<Category> dao;
+    private CategoryDAO dao;
 
     public CategoryServiceImpl() {
         dao = new CategoryDaoImpl();
@@ -23,36 +26,33 @@ public class CategoryServiceImpl implements CrudService<Category> {
     }
 
     @Override
-    public void update(Category category) throws SQLException {
-        dao.update(category);
+    public void update(int id) throws SQLException {
+        dao.update(id);
 
     }
 
-    @Override
-    public void delete(Category category) throws SQLException {
-        dao.delete(category);
-
-    }
-
-    @Override
-    public void deleteAll(Category category) throws SQLException {
-        dao.deleteAll(category);
-
-    }
-
-    @Override
-    public void show(Category category) throws SQLException {
-
-    }
-
-    @Override
-    public void filtration(Category category) throws SQLException {
-
-    }
 
     @Override
     public Category findById(int id) throws SQLException {
         return dao.findById(id);
+    }
+
+
+    @Override
+    public void show(Category category) throws SQLException {
+        dao.show(category);
+    }
+
+    @Override
+    public void filtration(Category category) throws SQLException {
+        dao.filtration(category);
+
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        dao.delete(id);
+
     }
 }
 
