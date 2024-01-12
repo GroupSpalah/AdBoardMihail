@@ -51,7 +51,6 @@ public class Test {
                 .phone(phone)
                 .address(address)
                 .email(email)
-                .ad(ad)
                 .build();
 
         address.setAuthor(author);
@@ -64,7 +63,6 @@ public class Test {
 
         adService.add(ad);
         Ad adServiceById = adService.findById(1);
-        author.setAd(adServiceById);
 
         authorService.add(author);
 

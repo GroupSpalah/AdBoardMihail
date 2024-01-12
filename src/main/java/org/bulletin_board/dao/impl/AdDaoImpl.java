@@ -7,6 +7,7 @@ import jakarta.persistence.Query;
 import lombok.Cleanup;
 import org.bulletin_board.dao.AdDAO;
 import org.bulletin_board.domain.Ad;
+import org.bulletin_board.domain.Author;
 
 import java.sql.SQLException;
 
@@ -40,15 +41,12 @@ public class AdDaoImpl implements AdDAO {
     }
 
     @Override
-    public void update(int id) throws SQLException {
+    public void update(Ad ad) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Ad ad = em.find(Ad.class, id);
-        ad.setName("BMW");
-        ad.setCostService(350);
 
         transaction.commit();
     }
@@ -60,13 +58,9 @@ public class AdDaoImpl implements AdDAO {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Query updateQuery = em.createQuery("UPDATE Author a SET a.ad = NULL WHERE a.ad.id = :ad_id");
-        updateQuery.setParameter("ad_id", id);
-
         Query query = em.createQuery("DELETE FROM Ad c WHERE c.id =: c_id");
         query.setParameter("c_id", id);
 
-        updateQuery.executeUpdate();
         query.executeUpdate();
 
         transaction.commit();

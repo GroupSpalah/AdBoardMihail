@@ -32,7 +32,4 @@ public class Author {
     @JoinColumn(name = "FK_Author_Email")
     Email email;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_Author_Ad")
-    Ad ad;
 }

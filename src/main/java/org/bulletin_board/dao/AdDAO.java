@@ -8,6 +8,4 @@ public interface AdDAO extends CrudDAO<Ad> {
     public void filtration(Ad ad) throws SQLException;
     public void delete(int id) throws SQLException;
 
-
-
 }

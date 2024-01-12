@@ -26,14 +26,15 @@ public class CategoryDaoImpl implements CategoryDAO {
     }
 
     @Override
-    public void update(int id) throws SQLException {
+    public void update(Category category) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Category category = em.find(Category.class, id);
-        category.setName("car");
+        Category category1 = em.merge(category);
+
+        em.persist(category1);
 
         transaction.commit();
 
@@ -69,14 +70,10 @@ public class CategoryDaoImpl implements CategoryDAO {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Query updateQuery = em.createQuery("UPDATE Ad a SET a.category = NULL WHERE a.category.id = :category_id");
-        updateQuery.setParameter("category_id", id);
-
         Query query = em.createQuery("DELETE FROM Category c WHERE c.id =: c_id");
 
         query.setParameter("c_id", id);
 
-        updateQuery.executeUpdate();
         query.executeUpdate();
 
         transaction.commit();

@@ -33,4 +33,8 @@ public class Ad {
     @JoinColumn(name = "FK_Ad_Category")
     Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "FK_Ad_Author")
+    Author author;
+
 }
