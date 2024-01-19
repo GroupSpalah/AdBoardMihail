@@ -16,7 +16,6 @@ public class AuthorServiceImpl implements CrudService<Author> {
         dao = new AuthorDaoImpl();
     }
 
-
     @Override
     public void add(Author author) throws SQLException {
         dao.add(author);
@@ -24,8 +23,8 @@ public class AuthorServiceImpl implements CrudService<Author> {
     }
 
     @Override
-    public void update(int id) throws SQLException {
-        dao.update(id);
+    public void update(Author author) throws SQLException {
+        dao.update(author);
 
     }
 
@@ -33,5 +32,6 @@ public class AuthorServiceImpl implements CrudService<Author> {
     public Author findById(int id) throws SQLException {
         return dao.findById(id);
     }
+
 }
 

@@ -1,12 +1,9 @@
 
 package org.bulletin_board.service.imp;
 import org.bulletin_board.dao.CategoryDAO;
-import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.CategoryDaoImpl;
-import org.bulletin_board.domain.Ad;
 import org.bulletin_board.domain.Category;
 import org.bulletin_board.service.CategoryService;
-import org.bulletin_board.service.CrudService;
 
 import java.sql.SQLException;
 
@@ -26,8 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void update(int id) throws SQLException {
-        dao.update(id);
+    public void update(Category category) throws SQLException {
+        dao.update(category);
 
     }
 
@@ -37,17 +34,6 @@ public class CategoryServiceImpl implements CategoryService {
         return dao.findById(id);
     }
 
-
-    @Override
-    public void show(Category category) throws SQLException {
-        dao.show(category);
-    }
-
-    @Override
-    public void filtration(Category category) throws SQLException {
-        dao.filtration(category);
-
-    }
 
     @Override
     public void delete(int id) throws SQLException {

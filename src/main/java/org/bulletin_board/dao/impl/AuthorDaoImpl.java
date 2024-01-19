@@ -3,7 +3,6 @@ package org.bulletin_board.dao.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
 import lombok.Cleanup;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.domain.Author;
@@ -29,14 +28,15 @@ public class AuthorDaoImpl implements CrudDAO<Author> {
     }
 
     @Override
-    public void update(int id) throws SQLException {
+    public void update(Author author) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Author author = em.find(Author.class, id);
-        author.setName("Michael");
+        Author author1 = em.merge(author);
+
+        em.persist(author1);
 
         transaction.commit();
     }
@@ -53,7 +53,6 @@ public class AuthorDaoImpl implements CrudDAO<Author> {
         transaction.commit();
         return author;
     }
-
 
 }
 

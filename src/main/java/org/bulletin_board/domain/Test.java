@@ -24,54 +24,74 @@ public class Test {
                 .name("Car")
                 .build();
 
-        Ad ad = Ad.builder()
-                .name("Volvo")
-                .date(LocalDate.now())
-                .text("change a car")
-                .costService(150)
-                .category(auto)
-                .build();
-
         Address address = Address
                 .builder()
-                .city("Dnipro")
+                .city("Kyiv")
                 .country("Ukraine")
                 .build();
 
         Phone phone = Phone.builder()
-                .number("089-234-12-56")
+                .number("059-456-32-86")
                 .build();
 
         Email email = Email.builder()
-                .name("Jack@gmail.com")
+                .name("Mike@gmail.com")
                 .build();
 
-        Author author = Author.builder()
-                .name("Jack")
+        Author jack = Author.builder()
+                .name("Mike")
                 .phone(phone)
                 .address(address)
                 .email(email)
                 .build();
 
-        address.setAuthor(author);
+        Ad ad = Ad.builder()
+                .name("BMW")
+                .date(LocalDate.now())
+                .text("buy a car")
+                .costService(150)
+                .category(auto)
+                .author(jack)
+                .build();
+
+        address.setAuthor(jack);
+
+        authorService.add(jack);
+        ad.setAuthor(jack);
+
+        Author author = authorService.findById(1);
+        ad.setAuthor(author);
 
         categoryService.add(car);
         categoryService.add(auto);
+
         ad.setCategory(car);
+        ad.setCategory(auto);
         Category category = categoryService.findById(1);
         ad.setCategory(category);
 
         adService.add(ad);
-        Ad adServiceById = adService.findById(1);
 
-        authorService.add(author);
+        category.setName("Bike");
+        categoryService.update(category);
 
-        adService.update(1);
-        authorService.update(1);
-        categoryService.update(1);
+        author.setName("Mike");
+        authorService.update(author);
+
+        Ad ad1 = adService.findById(1);
+        ad1.setCostService(800);
+        ad1.setName("BMW");
+
+        adService.update(ad1);
 
         adService.delete(1);
         categoryService.delete(1);
+
+        adService.showAd(auto);
+        adService.showByAuthor("Jack");
+        adService.showByKeyWord("change");
+        adService.showDate(LocalDate.now());
+
 
     }
 }
