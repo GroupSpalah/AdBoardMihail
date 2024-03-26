@@ -16,8 +16,6 @@ public interface AdService extends CrudService<Ad> {
 
     public List<Ad> showDate(LocalDate date) throws SQLException;
 
-    public void delete(int id) throws SQLException;
-
     public void deleteAll() throws SQLException;
 
 }

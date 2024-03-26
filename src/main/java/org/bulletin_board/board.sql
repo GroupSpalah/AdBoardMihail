@@ -48,3 +48,16 @@ CREATE TABLE `address` (
   `FK_Address_Author` int DEFAULT NULL,
   UNIQUE KEY (`FK_Address_Author`),
   FOREIGN KEY (`FK_Address_Author`) REFERENCES `author` (`author_id`));
+
+CREATE TABLE `matchingad` (
+  `matching_ad_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `price_from` double DEFAULT NULL,
+  `price_to` double DEFAULT NULL,
+  `version` int NOT NULL,
+  `tittle` varchar(255) DEFAULT NULL,
+  `FK_Matching_Ad_Author` int DEFAULT NULL,
+  `FK_Matching_Ad_Category` int DEFAULT NULL,
+  KEY (`FK_Matching_Ad_Author`),
+  KEY (`FK_Matching_Ad_Category`),
+  CONSTRAINT FOREIGN KEY (`FK_Matching_Ad_Category`) REFERENCES `category` (`category_id`),
+  CONSTRAINT FOREIGN KEY (`FK_Matching_Ad_Author`) REFERENCES `author` (`author_id`));

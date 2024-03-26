@@ -7,6 +7,8 @@ public interface CrudDAO<T> {
 
     public void update(T t) throws SQLException;
 
+    public void delete(int id) throws SQLException;
+
     public T findById(int id) throws SQLException;
 
 

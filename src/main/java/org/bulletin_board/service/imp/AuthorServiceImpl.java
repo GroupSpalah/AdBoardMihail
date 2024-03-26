@@ -29,6 +29,11 @@ public class AuthorServiceImpl implements CrudService<Author> {
     }
 
     @Override
+    public void delete(int id) throws SQLException {
+        dao.delete(id);
+    }
+
+    @Override
     public Author findById(int id) throws SQLException {
         return dao.findById(id);
     }

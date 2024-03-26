@@ -1,4 +1,3 @@
-
 package org.bulletin_board.dao.impl;
 
 import jakarta.persistence.EntityManager;
@@ -6,43 +5,38 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import lombok.Cleanup;
 import org.bulletin_board.dao.CrudDAO;
-import org.bulletin_board.domain.Address;
-import org.bulletin_board.domain.Author;
-import org.bulletin_board.service.AdService;
-import org.bulletin_board.service.imp.AdServiceImpl;
-
+import org.bulletin_board.domain.MatchingAd;
 import java.sql.SQLException;
 
-import static org.bulletin_board.util.Constans.*;
+import static org.bulletin_board.util.Constans.FACTORY;
 
-public class AuthorDaoImpl implements CrudDAO<Author> {
-
-
+public class MatchingAdDaoImpl implements CrudDAO<MatchingAd> {
     @Override
-    public void add(Author author) throws SQLException {
+    public void add(MatchingAd matchingAd) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        em.persist(author);
+        em.persist(matchingAd);
 
         transaction.commit();
 
     }
 
     @Override
-    public void update(Author author) throws SQLException {
+    public void update(MatchingAd matchingAd) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Author author1 = em.merge(author);
+        MatchingAd matchingAd1 = em.merge(matchingAd);
 
-        em.persist(author1);
+        em.persist(matchingAd);
 
         transaction.commit();
+
     }
 
     @Override
@@ -52,10 +46,8 @@ public class AuthorDaoImpl implements CrudDAO<Author> {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        AdService ad = new AdServiceImpl();
-        ad.deleteAll();
 
-        Query query = em.createQuery("DELETE FROM Author c WHERE c.id =: c_id");
+        Query query = em.createQuery("DELETE FROM MatchingAd c WHERE c.id =: c_id");
 
         query.setParameter("c_id", id);
 
@@ -66,17 +58,15 @@ public class AuthorDaoImpl implements CrudDAO<Author> {
     }
 
     @Override
-    public Author findById(int id) throws SQLException {
+    public MatchingAd findById(int id) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Author author = em.find(Author.class, id);
+        MatchingAd matchingAd = em.find(MatchingAd.class, id);
 
         transaction.commit();
-        return author;
+        return matchingAd;
     }
-
 }
-

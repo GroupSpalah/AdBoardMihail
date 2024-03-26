@@ -1,11 +1,11 @@
 package org.bulletin_board.domain;
 
 import org.bulletin_board.service.AdService;
-import org.bulletin_board.service.CategoryService;
 import org.bulletin_board.service.CrudService;
 import org.bulletin_board.service.imp.AdServiceImpl;
 import org.bulletin_board.service.imp.AuthorServiceImpl;
 import org.bulletin_board.service.imp.CategoryServiceImpl;
+import org.bulletin_board.service.imp.MatchingAdServiceImpl;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -14,7 +14,8 @@ public class Test {
     public static void main(String[] args) throws SQLException {
         CrudService<Author> authorService = new AuthorServiceImpl();
         AdService adService = new AdServiceImpl();
-        CategoryService categoryService = new CategoryServiceImpl();
+        CrudService<Category> categoryService = new CategoryServiceImpl();
+        CrudService<MatchingAd> matAdCrudService = new MatchingAdServiceImpl();
 
         Category auto = Category.builder()
                 .name("Auto")
@@ -39,7 +40,7 @@ public class Test {
                 .build();
 
         Author jack = Author.builder()
-                .name("Mike")
+                .name("Jack")
                 .phone(phone)
                 .address(address)
                 .email(email)
@@ -54,13 +55,24 @@ public class Test {
                 .author(jack)
                 .build();
 
+        MatchingAd matchingAd = MatchingAd.builder()
+                .priceFrom(1000)
+                .priceTo(2000)
+                .tittle("BMW")
+                .category(auto)
+                .author(jack)
+                .build();
+
         address.setAuthor(jack);
 
         authorService.add(jack);
         ad.setAuthor(jack);
+        matchingAd.setAuthor(jack);
+
 
         Author author = authorService.findById(1);
         ad.setAuthor(author);
+        matchingAd.setAuthor(author);
 
         categoryService.add(car);
         categoryService.add(auto);
@@ -69,8 +81,10 @@ public class Test {
         ad.setCategory(auto);
         Category category = categoryService.findById(1);
         ad.setCategory(category);
+        matchingAd.setCategory(auto);
 
         adService.add(ad);
+        matAdCrudService.add(matchingAd);
 
         category.setName("Bike");
         categoryService.update(category);
@@ -80,17 +94,18 @@ public class Test {
 
         Ad ad1 = adService.findById(1);
         ad1.setCostService(800);
-        ad1.setName("BMW");
+        ad1.setName("Volvo");
 
-        adService.update(ad1);
+//        adService.update(ad1);
 
-        adService.delete(1);
-        categoryService.delete(1);
-
-        adService.showAd(auto);
-        adService.showByAuthor("Jack");
-        adService.showByKeyWord("change");
-        adService.showDate(LocalDate.now());
+//        adService.delete(1);
+//        categoryService.delete(1);
+//        authorService.delete(3);
+//
+//        adService.showAd(auto);
+//       adService.showByAuthor("Mike");
+//        adService.showByKeyWord("buy");
+//        adService.showDate(LocalDate.now());
 
 
     }

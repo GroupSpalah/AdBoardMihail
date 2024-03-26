@@ -1,15 +1,15 @@
 
 package org.bulletin_board.service.imp;
-import org.bulletin_board.dao.CategoryDAO;
+import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.CategoryDaoImpl;
 import org.bulletin_board.domain.Category;
-import org.bulletin_board.service.CategoryService;
+import org.bulletin_board.service.CrudService;
 
 import java.sql.SQLException;
 
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CrudService<Category> {
 
-    private CategoryDAO dao;
+    private CrudDAO<Category> dao;
 
     public CategoryServiceImpl() {
         dao = new CategoryDaoImpl();

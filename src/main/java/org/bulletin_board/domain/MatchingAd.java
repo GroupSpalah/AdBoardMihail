@@ -12,21 +12,29 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
-public class Address {
-
+public class MatchingAd {
     @Version
     private int version;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
+    @Column(name = "matching_ad_id")
     int id;
 
-    String city;
+    @Column(name = "price_from")
+    double priceFrom;
 
-    String country;
+    @Column(name = "price_to")
+    double priceTo;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "FK_Address_Author")
+    @ManyToOne
+    @JoinColumn(name = "FK_Matching_Ad_Author")
     Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_Matching_Ad_Category")
+    Category category;
+
+    String tittle;
+
 }
