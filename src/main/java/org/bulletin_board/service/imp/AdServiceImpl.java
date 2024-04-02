@@ -52,12 +52,12 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public void delete(int id) throws SQLException {
-        dao.delete(id);
+        dao.delete(Ad.class, id);
     }
 
     @Override
     public Ad findById(int id) throws SQLException {
-        return dao.findById(id);
+        return dao.findById(Ad.class, id);
     }
 
     @Override

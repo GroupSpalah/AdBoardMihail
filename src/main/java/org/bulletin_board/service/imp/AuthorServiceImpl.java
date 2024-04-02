@@ -30,12 +30,12 @@ public class AuthorServiceImpl implements CrudService<Author> {
 
     @Override
     public void delete(int id) throws SQLException {
-        dao.delete(id);
+        dao.delete(Author.class, id);
     }
 
     @Override
     public Author findById(int id) throws SQLException {
-        return dao.findById(id);
+        return dao.findById(Author.class, id);
     }
 
 }

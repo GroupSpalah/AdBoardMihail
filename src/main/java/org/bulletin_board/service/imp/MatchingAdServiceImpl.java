@@ -29,12 +29,12 @@ public class MatchingAdServiceImpl implements CrudService<MatchingAd> {
 
     @Override
     public void delete(int id) throws SQLException {
-        dao.delete(id);
+        dao.delete(MatchingAd.class, id);
 
     }
 
     @Override
     public MatchingAd findById(int id) throws SQLException {
-        return dao.findById(id);
+        return dao.findById(MatchingAd.class, id);
     }
 }

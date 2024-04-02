@@ -18,19 +18,6 @@ import static org.bulletin_board.util.Constans.*;
 public class CategoryDaoImpl implements CrudDAO<Category> {
 
     @Override
-    public Category findById(int id) throws SQLException {
-        @Cleanup
-        EntityManager em = FACTORY.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-
-        Category category = em.find(Category.class, id);
-
-        transaction.commit();
-        return category;
-    }
-
-    @Override
     public void add(Category category) throws SQLException {
         @Cleanup
         EntityManager em = FACTORY.createEntityManager();
@@ -56,30 +43,7 @@ public class CategoryDaoImpl implements CrudDAO<Category> {
 
         transaction.commit();
 
-
     }
-
-
-    @Override
-    public void delete(int id) throws SQLException {
-        @Cleanup
-        EntityManager em = FACTORY.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-
-        AdService ad = new AdServiceImpl();
-        ad.deleteAll();
-
-        Query query = em.createQuery("DELETE FROM Category c WHERE c.id =: c_id");
-
-        query.setParameter("c_id", id);
-
-        query.executeUpdate();
-
-        transaction.commit();
-
-    }
-
 }
 
 

@@ -3,6 +3,7 @@ package org.bulletin_board.service.imp;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.CategoryDaoImpl;
 import org.bulletin_board.domain.Category;
+import org.bulletin_board.domain.MatchingAd;
 import org.bulletin_board.service.CrudService;
 
 import java.sql.SQLException;
@@ -31,13 +32,13 @@ public class CategoryServiceImpl implements CrudService<Category> {
 
     @Override
     public Category findById(int id) throws SQLException {
-        return dao.findById(id);
+        return dao.findById(Category.class, id);
     }
 
 
     @Override
     public void delete(int id) throws SQLException {
-        dao.delete(id);
+        dao.delete(Category.class, id);
 
     }
 }
