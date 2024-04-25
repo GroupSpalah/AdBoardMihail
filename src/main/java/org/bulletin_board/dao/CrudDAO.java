@@ -33,7 +33,7 @@ public interface CrudDAO<T> {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Query query = em.createQuery("DELETE FROM".concat(name).concat("c WHERE c.id =: c_id"));
+        Query query = em.createQuery("DELETE FROM"+ name +"c WHERE c.id =: c_id");
         query.setParameter("c_id", id);
         query.executeUpdate();
 

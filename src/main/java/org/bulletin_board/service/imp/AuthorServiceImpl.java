@@ -1,20 +1,19 @@
 
 package org.bulletin_board.service.imp;
 
+import lombok.AllArgsConstructor;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.AuthorDaoImpl;
 import org.bulletin_board.domain.Author;
 import org.bulletin_board.service.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-
+@Service
+@AllArgsConstructor
 public class AuthorServiceImpl implements CrudService<Author> {
 
     private CrudDAO<Author> dao;
-
-    public AuthorServiceImpl() {
-        dao = new AuthorDaoImpl();
-    }
 
     @Override
     public void add(Author author) throws SQLException {

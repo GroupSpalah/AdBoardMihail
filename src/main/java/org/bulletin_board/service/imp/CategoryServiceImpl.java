@@ -1,20 +1,19 @@
 
 package org.bulletin_board.service.imp;
+import lombok.AllArgsConstructor;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.CategoryDaoImpl;
 import org.bulletin_board.domain.Category;
 import org.bulletin_board.domain.MatchingAd;
 import org.bulletin_board.service.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-
+@Service
+@AllArgsConstructor
 public class CategoryServiceImpl implements CrudService<Category> {
 
     private CrudDAO<Category> dao;
-
-    public CategoryServiceImpl() {
-        dao = new CategoryDaoImpl();
-    }
 
 
     @Override

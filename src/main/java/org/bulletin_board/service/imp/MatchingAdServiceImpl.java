@@ -1,19 +1,18 @@
 package org.bulletin_board.service.imp;
 
+import lombok.AllArgsConstructor;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.dao.impl.MatchingAdDaoImpl;
 import org.bulletin_board.domain.MatchingAd;
 import org.bulletin_board.service.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-
+@Service
+@AllArgsConstructor
 public class MatchingAdServiceImpl implements CrudService<MatchingAd> {
 
     private CrudDAO<MatchingAd> dao;
-
-    public MatchingAdServiceImpl() {
-        dao = new MatchingAdDaoImpl();
-    }
 
     @Override
     public void add(MatchingAd matchingAd) throws SQLException {

@@ -6,16 +6,29 @@ import org.bulletin_board.service.imp.AdServiceImpl;
 import org.bulletin_board.service.imp.AuthorServiceImpl;
 import org.bulletin_board.service.imp.CategoryServiceImpl;
 import org.bulletin_board.service.imp.MatchingAdServiceImpl;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Test {
     public static void main(String[] args) throws SQLException {
-        CrudService<Author> authorService = new AuthorServiceImpl();
-        AdService adService = new AdServiceImpl();
-        CrudService<Category> categoryService = new CategoryServiceImpl();
-        CrudService<MatchingAd> matAdCrudService = new MatchingAdServiceImpl();
+
+        AnnotationConfigApplicationContext
+                context = new AnnotationConfigApplicationContext(ConfigAppProject.class);
+
+        AdService adService = context.getBean(AdServiceImpl.class);
+
+        AuthorServiceImpl authorService = context.getBean(AuthorServiceImpl.class);
+
+        CategoryServiceImpl categoryService = context.getBean(CategoryServiceImpl.class);
+
+        MatchingAdServiceImpl matAdCrudService = context.getBean(MatchingAdServiceImpl.class);
+
+//        CrudService<Author> authorService = new AuthorServiceImpl();
+//        AdService adService = new AdServiceImpl();
+//        CrudService<Category> categoryService = new CategoryServiceImpl();
+//        CrudService<MatchingAd> matAdCrudService = new MatchingAdServiceImpl();
 
         Category auto = Category.builder()
                 .name("Auto")
@@ -89,23 +102,23 @@ public class Test {
         category.setName("Bike");
         categoryService.update(category);
 
-        author.setName("Mike");
+        author.setName("John");
         authorService.update(author);
 
         Ad ad1 = adService.findById(1);
         ad1.setCostService(800);
-        ad1.setName("Volvo");
+        ad1.setName("Nissan");
 
 //        adService.update(ad1);
 
-//        adService.delete(1);
-//        categoryService.delete(1);
+ //       adService.delete(1);
+ //       categoryService.delete(1);
 //        authorService.delete(3);
 //
 //        adService.showAd(auto);
 //       adService.showByAuthor("Mike");
 //        adService.showByKeyWord("buy");
-//        adService.showDate(LocalDate.now());
+        adService.showDate(LocalDate.now());
 
 
     }

@@ -1,23 +1,23 @@
 
 package org.bulletin_board.service.imp;
 
+import lombok.AllArgsConstructor;
 import org.bulletin_board.dao.AdDAO;
 import org.bulletin_board.dao.impl.AdDaoImpl;
 import org.bulletin_board.domain.Ad;
 import org.bulletin_board.domain.Category;
 import org.bulletin_board.service.AdService;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class AdServiceImpl implements AdService {
 
     private AdDAO dao;
-
-    public AdServiceImpl() {
-        dao = new AdDaoImpl();
-    }
 
     @Override
     public void add(Ad ad) throws SQLException {

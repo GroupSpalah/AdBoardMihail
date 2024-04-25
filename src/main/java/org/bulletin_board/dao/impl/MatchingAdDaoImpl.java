@@ -6,10 +6,12 @@ import jakarta.persistence.Query;
 import lombok.Cleanup;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.domain.MatchingAd;
+import org.springframework.stereotype.Repository;
+
 import java.sql.SQLException;
 
 import static org.bulletin_board.util.Constans.FACTORY;
-
+@Repository
 public class MatchingAdDaoImpl implements CrudDAO<MatchingAd> {
 
     @Override

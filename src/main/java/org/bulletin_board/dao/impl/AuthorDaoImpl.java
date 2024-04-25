@@ -10,11 +10,13 @@ import org.bulletin_board.domain.Address;
 import org.bulletin_board.domain.Author;
 import org.bulletin_board.service.AdService;
 import org.bulletin_board.service.imp.AdServiceImpl;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 
 import static org.bulletin_board.util.Constans.*;
 
+@Repository
 public class AuthorDaoImpl implements CrudDAO<Author> {
 
     @Override

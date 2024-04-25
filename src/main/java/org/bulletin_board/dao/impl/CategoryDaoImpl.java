@@ -9,12 +9,13 @@ import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.domain.Category;
 import org.bulletin_board.service.AdService;
 import org.bulletin_board.service.imp.AdServiceImpl;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 
 import static org.bulletin_board.util.Constans.*;
 
-
+@Repository
 public class CategoryDaoImpl implements CrudDAO<Category> {
 
     @Override

@@ -9,6 +9,7 @@ import lombok.Cleanup;
 import org.bulletin_board.dao.AdDAO;
 import org.bulletin_board.domain.Ad;
 import org.bulletin_board.domain.Category;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static org.bulletin_board.util.Constans.FACTORY;
 
+@Repository
 public class AdDaoImpl implements AdDAO {
 
     @Override
