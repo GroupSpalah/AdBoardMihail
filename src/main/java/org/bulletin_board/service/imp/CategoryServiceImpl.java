@@ -31,13 +31,13 @@ public class CategoryServiceImpl implements CrudService<Category> {
 
     @Override
     public Category findById(int id) throws SQLException {
-        return dao.findById(Category.class, id);
+        return dao.findById(id);
     }
 
 
     @Override
     public void delete(int id) throws SQLException {
-        dao.delete(Category.class, id);
+        dao.delete(id);
 
     }
 }

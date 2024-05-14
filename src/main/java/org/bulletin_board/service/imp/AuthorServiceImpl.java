@@ -3,7 +3,6 @@ package org.bulletin_board.service.imp;
 
 import lombok.AllArgsConstructor;
 import org.bulletin_board.dao.CrudDAO;
-import org.bulletin_board.dao.impl.AuthorDaoImpl;
 import org.bulletin_board.domain.Author;
 import org.bulletin_board.service.CrudService;
 import org.springframework.stereotype.Service;
@@ -29,12 +28,12 @@ public class AuthorServiceImpl implements CrudService<Author> {
 
     @Override
     public void delete(int id) throws SQLException {
-        dao.delete(Author.class, id);
+        dao.delete(id);
     }
 
     @Override
     public Author findById(int id) throws SQLException {
-        return dao.findById(Author.class, id);
+        return dao.findById(id);
     }
 
 }

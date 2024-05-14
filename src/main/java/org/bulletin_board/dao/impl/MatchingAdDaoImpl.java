@@ -1,32 +1,46 @@
 package org.bulletin_board.dao.impl;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
-import lombok.Cleanup;
 import org.bulletin_board.dao.CrudDAO;
 import org.bulletin_board.domain.MatchingAd;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 
-import static org.bulletin_board.util.Constans.FACTORY;
 @Repository
+@Transactional
 public class MatchingAdDaoImpl implements CrudDAO<MatchingAd> {
+    @PersistenceContext
+    EntityManager em;
+
+    @Override
+    public void add(MatchingAd matchingAd) throws SQLException {
+        em.persist(matchingAd);
+    }
 
     @Override
     public void update(MatchingAd matchingAd) throws SQLException {
-        @Cleanup
-        EntityManager em = FACTORY.createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
 
         MatchingAd matchingAd1 = em.merge(matchingAd);
 
-        em.persist(matchingAd);
+        em.persist(matchingAd1);
 
-        transaction.commit();
+    }
 
+    @Override
+    public void delete(int id) throws SQLException {
+        Query query = em.createQuery("DELETE FROM MatchingAd m WHERE m.id =: m_id");
+        query.setParameter("m_id", id);
+        query.executeUpdate();
+
+    }
+
+    @Override
+    public MatchingAd findById(int id) throws SQLException {
+        return em.find(MatchingAd.class, id);
     }
 
 }

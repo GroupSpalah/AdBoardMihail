@@ -1,7 +1,7 @@
 package org.bulletin_board.domain;
 
+import org.bulletin_board.config.ConfigAppProject;
 import org.bulletin_board.service.AdService;
-import org.bulletin_board.service.CrudService;
 import org.bulletin_board.service.imp.AdServiceImpl;
 import org.bulletin_board.service.imp.AuthorServiceImpl;
 import org.bulletin_board.service.imp.CategoryServiceImpl;

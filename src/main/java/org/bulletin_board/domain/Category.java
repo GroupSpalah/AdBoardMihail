@@ -1,9 +1,9 @@
 package org.bulletin_board.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
