@@ -2,6 +2,7 @@ package org.bulletin_board.domain;
 
 import org.bulletin_board.config.ConfigAppProject;
 import org.bulletin_board.service.AdService;
+import org.bulletin_board.service.CrudService;
 import org.bulletin_board.service.imp.AdServiceImpl;
 import org.bulletin_board.service.imp.AuthorServiceImpl;
 import org.bulletin_board.service.imp.CategoryServiceImpl;
@@ -24,11 +25,6 @@ public class Test {
         CategoryServiceImpl categoryService = context.getBean(CategoryServiceImpl.class);
 
         MatchingAdServiceImpl matAdCrudService = context.getBean(MatchingAdServiceImpl.class);
-
-//        CrudService<Author> authorService = new AuthorServiceImpl();
-//        AdService adService = new AdServiceImpl();
-//        CrudService<Category> categoryService = new CategoryServiceImpl();
-//        CrudService<MatchingAd> matAdCrudService = new MatchingAdServiceImpl();
 
         Category auto = Category.builder()
                 .name("Auto")

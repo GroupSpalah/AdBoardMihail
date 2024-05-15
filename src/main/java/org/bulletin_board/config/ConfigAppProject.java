@@ -3,6 +3,7 @@ package org.bulletin_board.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -20,6 +21,7 @@ import javax.sql.DataSource;
         "org.bulletin_board.dao",
         "org.bulletin_board.service"})
 @EnableTransactionManagement
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class ConfigAppProject {
     @Bean
     public TransactionManager transactionManagement(EntityManagerFactory factory) {
